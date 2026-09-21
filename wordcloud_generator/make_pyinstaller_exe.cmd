@@ -1,0 +1,1 @@
+pyinstaller --windowed --noupx --onefile --noconfirm --distpath ./dist --contents-directory . --add-data "./res;./res" wordcloud_generator.py

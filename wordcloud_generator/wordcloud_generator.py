@@ -81,17 +81,15 @@ def load_mask_image(image_path: str) -> np.ndarray:
 def create_wordcloud(frequencies: dict[str, int], mask: np.ndarray) -> WordCloud:
     color_generator = ImageColorGenerator(mask)
 
-    wordcloud = WordCloud(
-        font_path="./res/08SeoulNamsanB.ttf",
-        width=800,
-        height=600,
-        min_font_size=20,
-        max_font_size=200,
-        background_color="rgba(255, 255, 255, 0)",
-        mode="RGBA",
-        mask=mask,
-        collocations=False,
-    )
+    wordcloud = WordCloud(font_path="./res/08SeoulNamsanB.ttf",
+                          width=800,
+                          height=600,
+                          min_font_size=20,
+                          max_font_size=200,
+                          background_color="rgba(255, 255, 255, 0)",
+                          mode="RGBA",
+                          mask=mask,
+                          collocations=False)
 
     wordcloud.generate_from_frequencies(frequencies)
     wordcloud.recolor(color_func=color_generator)
@@ -114,11 +112,9 @@ def save_wordcloud(wordcloud: WordCloud | None) -> None:
         messagebox.showwarning("저장할 결과 없음", "먼저 워드클라우드를 생성하세요.")
         return
 
-    save_path = filedialog.asksaveasfilename(
-        title="워드클라우드 저장",
-        defaultextension=".png",
-        filetypes=[("PNG 이미지", "*.png")],
-    )
+    save_path = filedialog.asksaveasfilename(title="워드클라우드 저장",
+                                             defaultextension=".png",
+                                             filetypes=[("PNG 이미지", "*.png")])
 
     if not save_path:
         return
@@ -145,6 +141,7 @@ class WordCloudApp:
 
         self.build_widgets()
 
+    # 윈도우 디자인
     def build_widgets(self) -> None:
         control_frame = ttk.Frame(self.root, padding=12)
         control_frame.pack(fill="x")
@@ -158,7 +155,7 @@ class WordCloudApp:
                   width=80).grid(row=0, column=1, padx=4, pady=4, sticky="ew")
 
         ttk.Button(control_frame,
-                   text="마스크 이미지 선택",
+                   text="배경 이미지 선택",
                    command=self.on_select_image).grid(row=1, column=0, padx=4, pady=4, sticky="ew")
 
         ttk.Label(control_frame,
@@ -188,18 +185,21 @@ class WordCloudApp:
                   anchor="w",
                   padding=5).pack(fill="x", side="bottom")
 
+    # CSV 선택
     def on_select_csv(self) -> None:
         selected_path = select_csv_file()
         if selected_path:
             self.csv_path.set(selected_path)
             self.status.set("CSV 파일을 선택했습니다.")
 
+    # 배경(마스크) 이미지 선택
     def on_select_image(self) -> None:
         selected_path = select_mask_image()
         if selected_path:
             self.image_path.set(selected_path)
-            self.status.set("마스크 이미지를 선택했습니다.")
+            self.status.set("배경 이미지를 선택했습니다.")
 
+    # 워드클라우드 생성
     def on_generate(self) -> None:
         try:
             frequencies = load_word_frequencies(self.csv_path.get())
@@ -212,6 +212,7 @@ class WordCloudApp:
             self.status.set("생성 중 오류가 발생했습니다.")
             messagebox.showerror("워드클라우드 생성 오류", str(error))
 
+    # 결과 저장
     def on_save(self) -> None:
         save_wordcloud(self.current_wordcloud)
 

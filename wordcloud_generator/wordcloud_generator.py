@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 
@@ -76,13 +79,22 @@ def load_mask_image(image_path: str) -> np.ndarray:
     image = Image.open(image_path).convert("RGB")
     return np.array(image)
 
+# 워드 클라우드 폰트 경로 관ㄹ
+def resource_path(relative_path: str) -> str:
+    """PyInstaller packaged exe 에서도 자원 파일 경로를 올바르게 반환."""
+    if getattr(sys, "frozen", False):
+        base_path = Path(sys._MEIPASS)
+    else:
+        base_path = Path(__file__).parent
+    return str(base_path / relative_path)
+
 
 # 워드 클라우드 만들기
 def create_wordcloud(frequencies: dict[str, int], mask: np.ndarray) -> WordCloud:
     color_generator = ImageColorGenerator(mask)
 
     wordcloud = WordCloud(
-        font_path="./res/fonts/08SeoulNamsanB.ttf",
+        font_path=resource_path("./res/fonts/08SeoulNamsanB.ttf"),
         width=800,
         height=600,
         min_font_size=20,

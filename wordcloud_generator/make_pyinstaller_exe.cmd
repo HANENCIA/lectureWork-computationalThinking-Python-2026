@@ -1,1 +1,1 @@
-pyinstaller --windowed --noupx --onefile --noconfirm --distpath ./dist --contents-directory . --add-data "./res/fonts;./res/fonts" --add-data "./res/dist/openh264;./" wordcloud_generator.py
+pyinstaller --windowed --noupx --onefile --noconfirm --distpath ./dist --add-data "./res/fonts;./res/fonts" wordcloud_generator.py

@@ -1,4 +1,4 @@
-('D:\\DevProjectsLocal\\Projects\\lectureWork-computationalThinking-Python-2026\\wordcloud_generator\\build\\wordcloud_generator\\PYZ-00.pyz',
+('D:\\DevProjectsLocal\\GitHub\\lectureWork-computationalThinking-Python-2026\\wordcloud_generator\\build\\wordcloud_generator\\PYZ-00.pyz',
  [('PIL',
    'C:\\Users\\HANENCIA\\miniconda3\\envs\\lecture_comthink_wordcloud\\lib\\site-packages\\PIL\\__init__.py',
    'PYMODULE'),

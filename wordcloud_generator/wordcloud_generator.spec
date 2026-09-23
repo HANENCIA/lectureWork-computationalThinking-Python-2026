@@ -5,7 +5,7 @@ a = Analysis(
     ['wordcloud_generator.py'],
     pathex=[],
     binaries=[],
-    datas=[('res', 'res')],
+    datas=[('res/fonts', 'res/fonts'), ('res/dist/openh264', '.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

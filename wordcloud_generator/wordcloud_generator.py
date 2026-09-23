@@ -82,7 +82,7 @@ def create_wordcloud(frequencies: dict[str, int], mask: np.ndarray) -> WordCloud
     color_generator = ImageColorGenerator(mask)
 
     wordcloud = WordCloud(
-        font_path="./res/08SeoulNamsanB.ttf",
+        font_path="./res/fonts/08SeoulNamsanB.ttf",
         width=800,
         height=600,
         min_font_size=20,

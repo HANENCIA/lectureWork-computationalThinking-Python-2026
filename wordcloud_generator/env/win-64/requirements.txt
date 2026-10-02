@@ -2,6 +2,6 @@ matplotlib==3.8.3
 numpy==1.26.4
 opencv-python==4.9.0.80
 pandas==2.2.0
-pillow
-pyinstaller
-wordcloud
+pillow==12.3.0
+pyinstaller==6.22.3
+wordcloud==1.9.6
